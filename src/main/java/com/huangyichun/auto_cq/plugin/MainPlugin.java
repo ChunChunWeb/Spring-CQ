@@ -75,6 +75,7 @@ public class MainPlugin extends CQPlugin {
         long groupId = event.getGroupId();
         long userId = event.getUserId();
 
+
         System.out.println("群" + groupId + "，人" + userId + ":\n" + msg);
 
         boolean isComingFromTargetGroup = getGroupsNumber.contains(groupId);
@@ -88,17 +89,17 @@ public class MainPlugin extends CQPlugin {
             if (isContainTAOBAOURL) {
                 ArrayList<String> taoBaoUrls = ParseUtil.getTaoBaoUrls(msg);
                 for (String taoBaoUrl : taoBaoUrls) {
-                    System.out.println(msg.replace(taoBaoUrl,
-                            Objects.requireNonNull(ParseUtil.getTaoBaoRealUrl(ParseUtil.doGet(ParseUtil.TAO_KOU_LIN_PARSE + taoBaoUrl)))));
+//                    System.out.println(msg.replace(taoBaoUrl,
+//                            Objects.requireNonNull(ParseUtil.getTaoBaoRealUrl(ParseUtil.doGet(ParseUtil.TAO_KOU_LIN_PARSE + taoBaoUrl)))));
                 }
             }
 
-            String result = "未转换的msg:" + msg;
+//            String result = "未转换的msg:" + msg;
 
             // 调用API发送消息
             if (!msg.contains("www"))
             for (Long groupNumber : sendGroupsNumber) {
-                cq.sendGroupMsg(groupNumber, result, false);
+                cq.sendGroupMsg(groupNumber, msg, false);
             }
 
             // 不执行下一个插件
