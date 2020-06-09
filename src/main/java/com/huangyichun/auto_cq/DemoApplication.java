@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.huangyichun.auto_cq;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

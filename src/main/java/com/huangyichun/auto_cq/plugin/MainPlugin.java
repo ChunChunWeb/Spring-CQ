@@ -1,11 +1,16 @@
-package com.example.demo.plugin;
+package com.huangyichun.auto_cq.plugin;
 
+import com.huangyichun.auto_cq.utils.ParseUtil;
 import net.lz1998.cq.event.message.CQGroupMessageEvent;
 import net.lz1998.cq.event.message.CQPrivateMessageEvent;
 import net.lz1998.cq.robot.CQPlugin;
 import net.lz1998.cq.robot.CoolQ;
-import net.lz1998.cq.utils.CQCode;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 
 /**
@@ -16,8 +21,21 @@ import org.springframework.stereotype.Component;
  * 查看API参数类型：光标移动到方法括号中按Ctrl+P
  * 查看API说明：光标移动到方法括号中按Ctrl+Q
  */
+
+
+
 @Component
-public class DemoPlugin extends CQPlugin {
+public class MainPlugin extends CQPlugin {
+
+    static Set<Long> sendGroupsNumber = new HashSet<>();
+    static Set<Long> getGroupsNumber = new HashSet<>();
+    static{
+        sendGroupsNumber.add(530754133L);
+
+//        getGroupsNumber.add(654129971L);
+//        getGroupsNumber.add(558525849L);
+        getGroupsNumber.add(680335967L);
+    }
     /**
      * 收到私聊消息时会调用这个方法
      *
@@ -30,7 +48,7 @@ public class DemoPlugin extends CQPlugin {
         // 获取 发送者QQ 和 消息内容
         long userId = event.getUserId();
         String msg = event.getMessage();
-
+        System.out.println(msg);
         if (msg.equals("hi")) {
             // 调用API发送hello
             cq.sendPrivateMsg(userId, "hello", false);
@@ -57,12 +75,31 @@ public class DemoPlugin extends CQPlugin {
         long groupId = event.getGroupId();
         long userId = event.getUserId();
 
-        if (msg.equals("hello")) {
-            // 回复内容为 at发送者 + hi
-            String result = CQCode.at(userId) + "hi";
+        System.out.println("群" + groupId + "，人" + userId + ":\n" + msg);
+
+        boolean isComingFromTargetGroup = getGroupsNumber.contains(groupId);
+        if ( isComingFromTargetGroup || msg.contains("test")) {
+            System.out.println("转发成功");
+
+
+            boolean isContainTAOBAOURL = ParseUtil.isContainsTaoBaoUrl(msg);
+//            boolean isContainJDURL = ParseUtil.isContainsJDUrl(msg);
+
+            if (isContainTAOBAOURL) {
+                ArrayList<String> taoBaoUrls = ParseUtil.getTaoBaoUrls(msg);
+                for (String taoBaoUrl : taoBaoUrls) {
+                    System.out.println(msg.replace(taoBaoUrl,
+                            Objects.requireNonNull(ParseUtil.getTaoBaoRealUrl(ParseUtil.doGet(ParseUtil.TAO_KOU_LIN_PARSE + taoBaoUrl)))));
+                }
+            }
+
+            String result = "未转换的msg:" + msg;
 
             // 调用API发送消息
-            cq.sendGroupMsg(groupId, result, false);
+            if (!msg.contains("www"))
+            for (Long groupNumber : sendGroupsNumber) {
+                cq.sendGroupMsg(groupNumber, result, false);
+            }
 
             // 不执行下一个插件
             return MESSAGE_BLOCK;
@@ -71,4 +108,6 @@ public class DemoPlugin extends CQPlugin {
         // 继续执行下一个插件
         return MESSAGE_IGNORE;
     }
+
+
 }
