@@ -1,16 +1,14 @@
 package com.huangyichun.auto_cq.plugin;
 
 import com.huangyichun.auto_cq.utils.ParseUtil;
+import com.huangyichun.auto_cq.utils.WeatherUtil;
 import net.lz1998.cq.event.message.CQGroupMessageEvent;
 import net.lz1998.cq.event.message.CQPrivateMessageEvent;
 import net.lz1998.cq.robot.CQPlugin;
 import net.lz1998.cq.robot.CoolQ;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -49,11 +47,23 @@ public class MainPlugin extends CQPlugin {
         long userId = event.getUserId();
         String msg = event.getMessage();
         System.out.println(msg);
-        if (msg.equals("hi")) {
-            // 调用API发送hello
-            cq.sendPrivateMsg(userId, "hello", false);
 
-            // 不执行下一个插件
+        // 嗨模块
+        if (msg.equals("hi")) {
+            cq.sendPrivateMsg(userId, "hello", false);
+            return MESSAGE_BLOCK;
+        }
+
+
+        // 天气模块
+        if (msg.indexOf("天气") == 0) {
+            List<String> cities = WeatherUtil.getCities(msg);
+            StringBuilder stringBuffer = new StringBuilder();
+            for (String city : cities) {
+                stringBuffer.append(WeatherUtil.getReply(city));
+            }
+
+            cq.sendPrivateMsg(userId, stringBuffer.toString(), false);
             return MESSAGE_BLOCK;
         }
         // 继续执行下一个插件
@@ -79,20 +89,21 @@ public class MainPlugin extends CQPlugin {
         System.out.println("群" + groupId + "，人" + userId + ":\n" + msg);
 
         boolean isComingFromTargetGroup = getGroupsNumber.contains(groupId);
-        if ( isComingFromTargetGroup || msg.contains("test")) {
-            System.out.println("转发成功");
+        if (msg.contains("test")) {
+//            isComingFromTargetGroup ||
+                    System.out.println("转发成功");
 
 
-            boolean isContainTAOBAOURL = ParseUtil.isContainsTaoBaoUrl(msg);
+//            boolean isContainTAOBAOURL = ParseUtil.isContainsTaoBaoUrl(msg);
 //            boolean isContainJDURL = ParseUtil.isContainsJDUrl(msg);
 
-            if (isContainTAOBAOURL) {
-                ArrayList<String> taoBaoUrls = ParseUtil.getTaoBaoUrls(msg);
-                for (String taoBaoUrl : taoBaoUrls) {
+//            if (isContainTAOBAOURL) {
+//                ArrayList<String> taoBaoUrls = ParseUtil.getTaoBaoUrls(msg);
+//                for (String taoBaoUrl : taoBaoUrls) {
 //                    System.out.println(msg.replace(taoBaoUrl,
 //                            Objects.requireNonNull(ParseUtil.getTaoBaoRealUrl(ParseUtil.doGet(ParseUtil.TAO_KOU_LIN_PARSE + taoBaoUrl)))));
-                }
-            }
+//                }
+//            }
 
 //            String result = "未转换的msg:" + msg;
 

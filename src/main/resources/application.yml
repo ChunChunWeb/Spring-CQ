@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8091
 
 spring:
   cq:
@@ -7,7 +7,7 @@ spring:
     # 如果前一个功能返回MESSAGE_BLOCK，下一个功能不会被执行
     # 如果前一个功能返回MESSAGE_IGNORE，会继续执行下一个功能
     plugin-list:
-      - com.huangyichun.auto_cq.plugin.DemoPlugin
+      - com.huangyichun.auto_cq.plugin.MainPlugin
       - com.huangyichun.auto_cq.plugin.TestPlugin
       - com.huangyichun.auto_cq.plugin.HelloPlugin
 
@@ -16,6 +16,6 @@ spring:
       core-pool-size: 5
       max-pool-size: 20
       keep-alive-time: 2000
-      work-queue-size: 512
+      work-queue-size: 256
 
     # 还有一些其他配置可以自己探索

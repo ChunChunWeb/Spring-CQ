@@ -18,7 +18,27 @@
         <java.version>1.8</java.version>
     </properties>
 
+
+
     <dependencies>
+        <dependency>
+            <groupId>us.codecraft</groupId>
+            <artifactId>webmagic-core</artifactId>
+            <version>0.7.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>us.codecraft</groupId>
+            <artifactId>webmagic-extension</artifactId>
+            <version>0.7.3</version>
+        </dependency>
+
+
         <dependency>
             <groupId>net.lz1998</groupId>
             <artifactId>spring-cq</artifactId>
@@ -54,6 +74,10 @@
         </dependency>
 
     </dependencies>
+
+
+
+
 
     <build>
         <plugins>
