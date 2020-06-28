@@ -45,7 +45,7 @@ public class WeatherUtil {
         String pm25 = weatherinfo.getString("pm25");
         String quality = weatherinfo.getString("quality");
         String pm_notice = weatherinfo.getString("ganmao");
-        String reply = jsonCity.getString("time") + "\n 今日, 湿度为" + shidu + "; pm25" + pm25 + "; 空气质量为 " + quality + "。\n" + pm_notice;
+        String reply = jsonCity.getString("time") + "\n 今日, 湿度为" + shidu + "; pm25 " + pm25 + "; 空气质量为 " + quality + "。\n" + pm_notice;
         JSONArray forecast = weatherinfo.getJSONArray("forecast");
         for (Object o : forecast) {
             JSONObject day = JSONObject.parseObject(o.toString());
