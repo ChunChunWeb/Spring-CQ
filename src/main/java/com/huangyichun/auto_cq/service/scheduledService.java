@@ -2,14 +2,11 @@ package com.huangyichun.auto_cq.service;
 
 
 import net.lz1998.cq.CQGlobal;
-import net.lz1998.cq.retdata.ApiData;
-import net.lz1998.cq.retdata.MessageData;
 import net.lz1998.cq.robot.CoolQ;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.Nullable;
 import org.springframework.scheduling.TaskScheduler;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
@@ -25,16 +22,14 @@ public class scheduledService {
      */
     static CoolQ mainBot = null;
     static HashMap<Long, List<String>> weatherSubscribes = new HashMap<>();
-
-
-
     static{
         try {
-            mainBot = CQGlobal.robots.get(3225088174L);
+            mainBot = CQGlobal.robots.get(3225088174L); // 如果没有获取，则会返回null 不会报错
         } catch (Exception e) {
             System.out.println("加载主类mainBot错误");
         }
-        // 仅仅测试使用
+
+        // 仅仅测试使用 需要删除
         LinkedList<String> cities = new LinkedList<>();
         cities.add("成都");
         weatherSubscribes.put(499154897L, cities);
@@ -42,7 +37,7 @@ public class scheduledService {
     }
 
     /**
-     * 每天向订阅用户推送信息 需要一个coolQ
+     * 每天向订阅用户推送天气信息 需要一个coolQ
      */
     @Scheduled(cron = "0 0 7 * * ?")
     public void weather() {
@@ -59,6 +54,19 @@ public class scheduledService {
     }
 
 
+    /**
+     * 发送定时消息给某人
+     * 发送提醒日报给对应人，需要MainBot
+     */
+    @Scheduled(cron = "0 30 17 * * ?")
+    public void sendDailyMessageToHCC() {
+        if (!isGotMainBot()) {
+            return;
+        }
+        mainBot.sendPrivateMsg(499154897L, "今日日报该发送了，坚持半个小时就成功了", false);
+        mainBot.sendPrivateMsg(992195496L, "今日日报该发送了，坚持半个小时就成功了", false);
+    }
+
 
     /**
      * 在主动推送消息时，必须使用该方法来调用，防止离线
@@ -66,15 +74,12 @@ public class scheduledService {
      * @return 是否获得成功加载主QQ
      */
     public boolean isGotMainBot() {
-        if (mainBot == null) {
-            try {
-                mainBot = CQGlobal.robots.get(3225088174L);
-            } catch (Exception e) {
-                System.out.println("加载主类mainBot错误");
-                return false;
-            }
+        try {
+            mainBot = CQGlobal.robots.get(3225088174L);
+        } catch (Exception e) {
+            System.out.println("加载主类mainBot错误");
         }
-        return true;
+        return mainBot != null;
     }
 
     /**
