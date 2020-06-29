@@ -35,9 +35,9 @@ public class WeatherUtil {
     public static String getReply(String city_name) {
 
 //        String city_name = "成都";
-        String chengdu = doGet(WEATHER_INTERFACE_HTTP_URL + CITY_CODE.get(city_name));
-        System.out.println(chengdu);
-        JSONObject jsonCity = JSONObject.parseObject(chengdu);
+        String city = doGet(WEATHER_INTERFACE_HTTP_URL + CITY_CODE.get(city_name));
+        System.out.println(city);
+        JSONObject jsonCity = JSONObject.parseObject(city);
         System.out.println(jsonCity);
 
         JSONObject weatherinfo = jsonCity.getJSONObject("data");
@@ -45,7 +45,7 @@ public class WeatherUtil {
         String pm25 = weatherinfo.getString("pm25");
         String quality = weatherinfo.getString("quality");
         String pm_notice = weatherinfo.getString("ganmao");
-        String reply = jsonCity.getString("time") + "\n 今日, 湿度为" + shidu + "; pm25 " + pm25 + "; 空气质量为 " + quality + "。\n" + pm_notice;
+        String reply = jsonCity.getString("time") + "\n" + city_name +"今日, 湿度为" + shidu + "; pm25 " + pm25 + "; 空气质量为 " + quality + "。\n" + pm_notice;
         JSONArray forecast = weatherinfo.getJSONArray("forecast");
         for (Object o : forecast) {
             JSONObject day = JSONObject.parseObject(o.toString());

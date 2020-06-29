@@ -34,6 +34,9 @@ public class MainPlugin extends CQPlugin {
 //        getGroupsNumber.add(558525849L);
         getGroupsNumber.add(680335967L);
     }
+
+
+
     /**
      * 收到私聊消息时会调用这个方法
      *
