@@ -33,6 +33,7 @@ public class scheduledService {
         LinkedList<String> cities = new LinkedList<>();
         cities.add("成都");
         weatherSubscribes.put(499154897L, cities);
+        weatherSubscribes.put(1146592691L, cities);
 
     }
 
@@ -70,7 +71,6 @@ public class scheduledService {
 
     /**
      * 在主动推送消息时，必须使用该方法来调用，防止离线
-     * todo 需要判断主QQ掉线情况
      * @return 是否获得成功加载主QQ
      */
     public boolean isGotMainBot() {
