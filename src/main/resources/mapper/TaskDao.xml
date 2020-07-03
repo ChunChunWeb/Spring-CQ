@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huangyichun.taskManager.dao.TaskDao">
+
+    <resultMap type="com.huangyichun.taskManager.entity.TaskVO" id="TaskMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="jobName" column="job_name" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="cronExpression" column="cron_expression" jdbcType="VARCHAR"/>
+        <result property="beanClass" column="bean_class" jdbcType="VARCHAR"/>
+        <result property="jobStatus" column="job_status" jdbcType="VARCHAR"/>
+        <result property="jobGroup" column="job_group" jdbcType="VARCHAR"/>
+        <result property="createUser" column="create_user" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateUser" column="update_user" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="selectByType" parameterType="java.lang.String" resultType="com.huangyichun.taskManager.model.Task">
+        select * from task
+        <where>
+            <if test="#{type} != null and #{type} != ''">
+                job_group=#{type}
+            </if>
+        </where>
+    </select>
+
+</mapper>
