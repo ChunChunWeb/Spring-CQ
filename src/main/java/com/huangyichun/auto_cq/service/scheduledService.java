@@ -10,7 +10,10 @@ import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import static com.huangyichun.auto_cq.utils.WeatherUtil.getReply;
 
@@ -28,7 +31,7 @@ public class scheduledService {
         } catch (Exception e) {
             System.out.println("加载主类mainBot错误");
         }
-
+ 
         // 仅仅测试使用 需要删除
         LinkedList<String> cities = new LinkedList<>();
         cities.add("成都");

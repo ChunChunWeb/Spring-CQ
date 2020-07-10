@@ -17,13 +17,62 @@ public class QuartzUtil {
     /**
      * 获取一类任务的列表
      *
-     * @param taskType
+     * @param taskType 任务类型代码
      * @return
      * @author: xuyf
      * @Date: 2020/7/3
      */
-    public List<Task> scanTask(TaskEnum.type taskType) {
-
+    public List<Task> scanTasks(TaskEnum.type taskType) {
         return null;
     }
+
+    /**
+     * 启动一个task
+     *
+     * @param task 要启动的任务
+     * @return
+     * @author: xuyf
+     * @Date: 2020/7/5
+     */
+    public <T> void startTask(Task task) throws ClassNotFoundException {
+        T t = (T) Class.forName(task.getBeanClass());
+
+    }
+
+    /**
+     * 启动多个任务
+     *
+     * @param tasks 要启动的任务列表
+     * @return
+     * @author: xuyf
+     * @Date: 2020/7/5
+     */
+    public void startTasks(List<Task> tasks) {
+
+    }
+
+    /**
+     * 停止一个任务
+     *
+     * @param task
+     * @return
+     * @author: xuyf
+     * @Date: 2020/7/5
+     */
+    public void stopTask(Task task) {
+
+    }
+
+    /**
+     * 停止多个任务
+     *
+     * @param tasks
+     * @return
+     * @author: xuyf
+     * @Date: 2020/7/5
+     */
+    public void stopTasks(List<Task> tasks) {
+
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.huangyichun.auto_cq.utils;
+package com.huangyichun.coreUtil;
 
 /**
  * 枚举接口

@@ -1,6 +1,6 @@
 package com.huangyichun.taskManager.ienum;
 
-import com.huangyichun.auto_cq.utils.IEnum;
+import com.huangyichun.coreUtil.IEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

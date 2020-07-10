@@ -1,6 +1,6 @@
 package com.huangyichun.taskManager.service.impl;
 
-import com.huangyichun.auto_cq.utils.StringUtil;
+import com.huangyichun.coreUtil.StringUtil;
 import com.huangyichun.taskManager.dao.TaskDao;
 import com.huangyichun.taskManager.entity.TaskVO;
 import com.huangyichun.taskManager.ienum.TaskEnum;
