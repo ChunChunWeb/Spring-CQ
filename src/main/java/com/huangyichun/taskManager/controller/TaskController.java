@@ -1,11 +1,7 @@
 package com.huangyichun.taskManager.controller;
 
-import com.huangyichun.taskManager.service.TaskService;
-import com.huangyichun.taskManager.service.impl.QuartzUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 /**
  * (TaskVO)表控制层
@@ -19,13 +15,13 @@ public class TaskController {
     /**
      * 服务对象
      */
-    @Resource
-    private TaskService taskService;
+//    @Resource
+//    private TaskService taskService;
 
     /**
      * 任务调度对象
      */
-    @Resource
-    private QuartzUtil quartzUtil;
+//    @Resource
+//    private QuartzUtil quartzUtil;
 
 }

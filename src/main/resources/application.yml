@@ -5,10 +5,9 @@ spring:
   # mysql连接
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://xugg001.com:3306/cq?characterEncoding=utf8&useSSL=true
+    url: jdbc:mysql://47.95.10.24:3306/cq?characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai&autoReconnect=true
     username: root
     password: xroot
-
   cq:
     # 在这里配置各个功能执行顺序
     # 如果前一个功能返回MESSAGE_BLOCK，下一个功能不会被执行
