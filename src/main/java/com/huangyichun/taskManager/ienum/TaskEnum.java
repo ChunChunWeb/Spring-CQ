@@ -1,8 +1,9 @@
 package com.huangyichun.taskManager.ienum;
 
-import com.huangyichun.coreUtil.IEnum;
+import com.huangyichun.core.ienum.IEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.stereotype.Component;
 
 /**
  * 任务类相关枚举，想到就加
@@ -10,6 +11,7 @@ import lombok.Getter;
  * @author xuyf
  * @date 2020/7/3
  */
+@Component
 public class TaskEnum {
     /**
      * 任务状态枚举
@@ -39,7 +41,7 @@ public class TaskEnum {
         PLUGIN("1", "插件任务"),
         QQ_MSG("2", "qq定时消息"),
         OTHER("3", "其他任务");
-        private String code;
-        private String text;
+        private final String code;
+        private final String text;
     }
 }

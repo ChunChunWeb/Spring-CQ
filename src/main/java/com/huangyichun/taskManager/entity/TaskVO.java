@@ -1,6 +1,7 @@
 package com.huangyichun.taskManager.entity;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Date;
  * @since 2020-07-03 15:48:32
  */
 @Data
+@Component
 public class TaskVO implements Serializable {
     private static final long serialVersionUID = -37588618554585189L;
 

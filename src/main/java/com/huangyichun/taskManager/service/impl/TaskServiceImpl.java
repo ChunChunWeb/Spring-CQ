@@ -1,6 +1,6 @@
 package com.huangyichun.taskManager.service.impl;
 
-import com.huangyichun.coreUtil.StringUtil;
+import com.huangyichun.core.util.StringUtil;
 import com.huangyichun.taskManager.dao.TaskDao;
 import com.huangyichun.taskManager.entity.TaskVO;
 import com.huangyichun.taskManager.ienum.TaskEnum;
@@ -46,4 +46,6 @@ public class TaskServiceImpl {
         task.setJobStatus(TaskEnum.status.STOP.getCode());
         taskDao.updateByPrimaryKeySelective(task);
     }
+
+
 }

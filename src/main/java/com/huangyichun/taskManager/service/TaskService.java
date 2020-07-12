@@ -2,6 +2,8 @@ package com.huangyichun.taskManager.service;
 
 import com.huangyichun.taskManager.entity.TaskVO;
 
+import java.util.List;
+
 /**
  * (TaskVO)表服务接口
  *
@@ -46,4 +48,15 @@ public interface TaskService {
      * @Date: 2020/7/3
      */
     void stopTask(String taskId);
+
+    /**
+     * 获取可以用于配置的task类名
+     *
+     * @param
+     * @return
+     * @author: xuyf
+     * @Date: 2020/7/10
+     */
+    <T> List<T> getTaskClass();
 }
+

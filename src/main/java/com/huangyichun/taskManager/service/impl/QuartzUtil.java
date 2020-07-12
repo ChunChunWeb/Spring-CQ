@@ -2,6 +2,7 @@ package com.huangyichun.taskManager.service.impl;
 
 import com.huangyichun.taskManager.ienum.TaskEnum;
 import com.huangyichun.taskManager.model.Task;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @author xuyf
  * @date 2020/7/3
  */
+@Component
 public class QuartzUtil {
 
     /**

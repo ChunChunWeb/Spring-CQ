@@ -2,6 +2,13 @@ server:
   port: 8091
 
 spring:
+  # mysql连接
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://xugg001.com:3306/cq?characterEncoding=utf8&useSSL=true
+    username: root
+    password: xroot
+
   cq:
     # 在这里配置各个功能执行顺序
     # 如果前一个功能返回MESSAGE_BLOCK，下一个功能不会被执行
@@ -17,5 +24,5 @@ spring:
       max-pool-size: 20
       keep-alive-time: 2000
       work-queue-size: 256
-
     # 还有一些其他配置可以自己探索
+

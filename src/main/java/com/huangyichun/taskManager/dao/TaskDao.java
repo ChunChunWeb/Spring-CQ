@@ -1,6 +1,6 @@
 package com.huangyichun.taskManager.dao;
 
-import com.huangyichun.coreUtil.BaseDao;
+import com.huangyichun.core.dao.BaseDao;
 import com.huangyichun.taskManager.model.Task;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

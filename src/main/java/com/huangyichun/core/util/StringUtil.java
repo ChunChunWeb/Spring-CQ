@@ -1,4 +1,4 @@
-package com.huangyichun.coreUtil;
+package com.huangyichun.core.util;
 
 import java.util.UUID;
 

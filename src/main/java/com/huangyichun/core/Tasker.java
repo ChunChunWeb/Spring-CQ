@@ -1,4 +1,4 @@
-package com.huangyichun.coreUtil;
+package com.huangyichun.core;
 
 /**
  * 定义可以执行的任务类的方法
@@ -14,5 +14,4 @@ public interface Tasker {
      * @Date: 2020/7/6
      */
     void run();
-
 }

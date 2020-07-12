@@ -1,6 +1,7 @@
 package com.huangyichun.taskManager.model;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "task")
+@Component
 public class Task implements Serializable {
 
 	/**
