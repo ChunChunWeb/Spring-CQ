@@ -25,3 +25,7 @@ spring:
       work-queue-size: 256
     # 还有一些其他配置可以自己探索
 
+# bilibi 插件设置
+bilibili:
+  png-save-path: C:/tempPNG/
+  chrome-driver-path: C:/modules/chrome/chromedriver_win83.exe

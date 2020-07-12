@@ -51,7 +51,6 @@ public class WeatherUtil {
             JSONObject day = JSONObject.parseObject(o.toString());
             String high = day.getString("high");
             String low = day.getString("low");
-//            String ymd = day.getString("ymd");
             String type = day.getString("type");
             String notice = day.getString("notice");
 
