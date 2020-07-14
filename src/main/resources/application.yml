@@ -29,3 +29,5 @@ spring:
 bilibili:
   png-save-path: C:/tempPNG/
   chrome-driver-path: C:/modules/chrome/chromedriver_win83.exe
+
+

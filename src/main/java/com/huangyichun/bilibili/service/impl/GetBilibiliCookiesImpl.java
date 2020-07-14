@@ -1,6 +1,7 @@
 package com.huangyichun.bilibili.service.impl;
 
 import com.huangyichun.bilibili.eventListener.BilibiliLogInEventListener;
+import com.huangyichun.bilibili.ienum.BilibiliEnum;
 import com.huangyichun.bilibili.service.GetBilibiliCookies;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.UUID;
 
 
 @Service
@@ -23,22 +25,25 @@ public class GetBilibiliCookiesImpl implements GetBilibiliCookies {
     @Value("${bilibili.png-save-path}")
     private String pngSavePath;
 
-    public final static String CHROME_DRIVER_PATH = "C:\\modules\\chrome\\chromedriver_win83.exe";
+    @Value("${bilibili.chrome-driver-path}")
+    private String CHROME_DRIVER_PATH;
+
+    public final static String CHROME_DRIVER_Name = "webdriver.chrome.driver";
     public final static int ONE = 1;
     public final static int SIXTY = 60;
     public final static String PNG_SUFFIX = ".png";
 
-    public String getBilibiliCookies() throws FileNotFoundException {
+    public BilibiliEnum.RqStatus getBilibiliCookies(String uuid) throws FileNotFoundException {
         //  cookie
         StringBuilder stringBuilder = new StringBuilder();
 
 
         // 二维码编码
-        String uuid = java.util.UUID.randomUUID().toString();
+//        String uuid = java.util.UUID.randomUUID().toString();
 
-        System.getProperties().setProperty("webdriver.chrome.driver",CHROME_DRIVER_PATH);
 
         // 配置项
+        System.getProperties().setProperty(CHROME_DRIVER_Name, CHROME_DRIVER_PATH);
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("headless");         //无界面参数
         chromeOptions.addArguments("no-sandbox");       //禁用沙盒 就是被这个参数搞了一天
@@ -134,13 +139,15 @@ public class GetBilibiliCookiesImpl implements GetBilibiliCookies {
                     stringBuilder.append("name = ").append(name).append("； value = ").append(value).append("\n");
                 }
             } else {
-                // 超时了
-                System.out.println("用户未扫描，超时");
+                // 未确认
+                System.out.println("用户扫描,未确认，超时");
+                return BilibiliEnum.RqStatus.NO_CONFIRM;
             }
 
         } else {
-            // 超时了
+            // 未扫描
             System.out.println("用户未扫描，超时");
+            return BilibiliEnum.RqStatus.NEVER_SCAN;
         }
 
 
@@ -150,8 +157,10 @@ public class GetBilibiliCookiesImpl implements GetBilibiliCookies {
 
         webDriver.close();
         webDriver.quit();
-
-        return stringBuilder.toString();
+        System.out.println(stringBuilder.toString());
+        // 直接保存到数据库
+        // 返回状态码
+        return BilibiliEnum.RqStatus.CONFIRM;
 
     }
 
@@ -161,7 +170,7 @@ public class GetBilibiliCookiesImpl implements GetBilibiliCookies {
 
     public static void main(String[] args) throws FileNotFoundException {
         GetBilibiliCookiesImpl getBilibiliCookies = new GetBilibiliCookiesImpl();
-        System.out.println(getBilibiliCookies.getBilibiliCookies());
+        System.out.println(getBilibiliCookies.getBilibiliCookies(UUID.randomUUID().toString()));
 
     }
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.FileNotFoundException;
+import java.util.UUID;
 
 @Controller
 public class BilibiliController {
@@ -31,9 +32,21 @@ public class BilibiliController {
 
     @ResponseBody
     @RequestMapping("/bilibili/test")
-    public String test() throws FileNotFoundException {
+    public String test(){
+        String uuid = UUID.randomUUID().toString();
 
-        return "<p>" + getBilibiliCookies.getBilibiliCookies() + "</p>";
+
+        return "<a href=/bilibili/png/\" +uuid+\"/> 跳跳跳</a>";
+
+    }
+
+    @ResponseBody
+    @RequestMapping("/bilibili/test")
+    public String login() throws FileNotFoundException {
+        String uuid = UUID.randomUUID().toString();
+
+
+        return "<a href=/bilibili/png/" +uuid+"/> 跳跳跳</a><br> <p>" + getBilibiliCookies.getBilibiliCookies(uuid) + "</p>";
 
     }
 
