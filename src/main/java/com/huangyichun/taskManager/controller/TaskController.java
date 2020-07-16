@@ -1,10 +1,17 @@
 package com.huangyichun.taskManager.controller;
 
+import com.huangyichun.core.MyTask;
 import com.huangyichun.taskManager.entity.TaskVO;
 import com.huangyichun.taskManager.service.impl.QuartzUtil;
 import com.huangyichun.taskManager.service.impl.TaskServiceImpl;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+import java.util.Set;
 
 /**
  * (TaskVO)表控制层
@@ -15,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("task")
 public class TaskController {
+    @Autowired
+    private static ApplicationContext applicationContext;
     /**
      * 服务对象
      */
@@ -69,7 +78,26 @@ public class TaskController {
     }
 
     @GetMapping("test")
-    public String test() {
-        return "test ";
+    public void test() {
+        Map<String, Object> anoBean = applicationContext.getBeansWithAnnotation(MyTask.class);
+        Set<Map.Entry<String, Object>> entitySet = anoBean.entrySet();
+        for (Map.Entry<String, Object> entry : entitySet) {
+            Class<? extends Object> clazz = entry.getValue().getClass();//获取bean对象
+            System.out.println("================" + clazz.getName());
+            MyTask myTask = AnnotationUtils.findAnnotation(clazz, MyTask.class);
+            System.out.println("===================" + myTask.getClass().toString());
+        }
     }
+}
+
+@MyTask
+@Data
+class A {
+    String name;
+}
+
+@MyTask
+@Data
+class B {
+    String name;
 }
