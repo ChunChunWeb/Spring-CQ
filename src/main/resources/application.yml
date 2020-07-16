@@ -5,7 +5,7 @@ spring:
   # mysql连接
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.95.10.24:3306/cq?characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai&autoReconnect=true
+    url: jdbc:mysql://47.95.10.24:3306/cq?characterEncoding=utf8&useSSL=false
     username: root
     password: xroot
   cq:

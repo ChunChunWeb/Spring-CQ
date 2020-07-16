@@ -23,29 +23,30 @@ public class TaskServiceImpl {
     private TaskDao taskDao;
 
     public void addTask(TaskVO taskVO) {
+        System.out.println("----------新建任务----------");
         Task task = new Task();
         BeanUtils.copyProperties(taskVO, task);
         //设置任务配置信息
         task.setId(StringUtil.getUUID());
+        task.setCreateTime(new Date());
         task.setUpdateTime(new Date());
-        taskDao.insertSelective(task);
+        System.out.println("addtask============>" + task);
+//        taskDao.insertSelective(task);
+        taskDao.insert(task);
     }
 
 
     public void deleteTask(String taskId) {
         Task task = taskDao.selectByPrimaryKey(taskId);
         //修改任务状态为已删除
-        task.setJobStatus(TaskEnum.status.DELETED.getCode());
+        task.setJobStatus(TaskEnum.STATUS.DELETED.getCode());
         taskDao.updateByPrimaryKeySelective(task);
     }
-
 
     public void stopTask(String taskId) {
         Task task = taskDao.selectByPrimaryKey(taskId);
         //修改任务状态为停止
-        task.setJobStatus(TaskEnum.status.STOP.getCode());
+        task.setJobStatus(TaskEnum.STATUS.STOP.getCode());
         taskDao.updateByPrimaryKeySelective(task);
     }
-
-
 }

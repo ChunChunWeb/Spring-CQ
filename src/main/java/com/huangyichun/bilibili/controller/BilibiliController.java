@@ -5,7 +5,6 @@ import com.huangyichun.bilibili.service.GetBilibiliCookies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,15 +29,15 @@ public class BilibiliController {
 
     }
 
-    @ResponseBody
-    @RequestMapping("/bilibili/test")
-    public String test(){
-        String uuid = UUID.randomUUID().toString();
-
-
-        return "<a href=/bilibili/png/\" +uuid+\"/> 跳跳跳</a>";
-
-    }
+//    @ResponseBody
+//    @RequestMapping("/bilibili/test")
+//    public String test(){
+//        String uuid = UUID.randomUUID().toString();
+//
+//
+//        return "<a href=/bilibili/png/\" +uuid+\"/> 跳跳跳</a>";
+//
+//    }
 
     @ResponseBody
     @RequestMapping("/bilibili/test")
