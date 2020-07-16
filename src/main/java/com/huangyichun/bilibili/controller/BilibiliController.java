@@ -41,7 +41,7 @@ public class BilibiliController {
     }
 
     @ResponseBody
-    @RequestMapping("/bilibili/test")
+    @RequestMapping("/bilibili/test2")
     public String login() throws FileNotFoundException {
         String uuid = UUID.randomUUID().toString();
 

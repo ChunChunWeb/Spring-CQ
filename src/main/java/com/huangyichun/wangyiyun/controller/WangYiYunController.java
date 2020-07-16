@@ -2,6 +2,7 @@ package com.huangyichun.wangyiyun.controller;
 
 
 import com.huangyichun.bilibili.service.GetBilibiliCookies;
+import com.huangyichun.wangyiyun.service.WangYiYunServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -17,14 +18,15 @@ public class WangYiYunController {
 
 
     @Autowired
-    private GetBilibiliCookies getBilibiliCookies;
+    private WangYiYunServer wangYiYunServer;
 
 
     @ResponseBody
-    @RequestMapping("/wangyiyun/test")
-    public String wangyiyunTest(@PathVariable("uuid") String uuid) {
-        return "<p>" + uuid + "</p>";
+    @RequestMapping("/wangyiyun/test/{uin}/{pwd}")
+    public String wangyiyunTest(@PathVariable("uin") String uuid, @PathVariable("pwd") String pwd) {
 
+        wangYiYunServer.login(uuid, pwd);
+        return "<p>" + uuid + " " + pwd + "</p>";
     }
 
 }

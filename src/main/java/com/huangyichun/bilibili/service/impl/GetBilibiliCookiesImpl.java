@@ -28,7 +28,7 @@ public class GetBilibiliCookiesImpl implements GetBilibiliCookies {
     @Value("${bilibili.chrome-driver-path}")
     private String CHROME_DRIVER_PATH;
 
-    public final static String CHROME_DRIVER_Name = "webdriver.chrome.driver";
+    public final static String CHROME_DRIVER_NAME = "webdriver.chrome.driver";
     public final static int ONE = 1;
     public final static int SIXTY = 60;
     public final static String PNG_SUFFIX = ".png";
@@ -43,7 +43,7 @@ public class GetBilibiliCookiesImpl implements GetBilibiliCookies {
 
 
         // 配置项
-        System.getProperties().setProperty(CHROME_DRIVER_Name, CHROME_DRIVER_PATH);
+        System.getProperties().setProperty(CHROME_DRIVER_NAME, CHROME_DRIVER_PATH);
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("headless");         //无界面参数
         chromeOptions.addArguments("no-sandbox");       //禁用沙盒 就是被这个参数搞了一天
