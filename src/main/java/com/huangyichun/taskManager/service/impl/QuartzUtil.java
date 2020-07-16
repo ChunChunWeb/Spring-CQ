@@ -24,7 +24,7 @@ public class QuartzUtil {
      * @author: xuyf
      * @Date: 2020/7/3
      */
-    public List<Task> scanTasks(TaskEnum.type taskType) {
+    public List<Task> scanTasks(TaskEnum.TYPE taskType) {
         return null;
     }
 

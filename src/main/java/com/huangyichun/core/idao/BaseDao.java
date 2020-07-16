@@ -1,4 +1,4 @@
-package com.huangyichun.core.dao;
+package com.huangyichun.core.idao;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;

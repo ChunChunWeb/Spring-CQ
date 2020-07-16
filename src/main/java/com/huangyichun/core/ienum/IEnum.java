@@ -2,7 +2,10 @@ package com.huangyichun.core.ienum;
 
 /**
  * 枚举接口
- * @param <T>
+ * 枚举类都应继承该接口，通过getCode，getText方法获取对应码值
+ *
+ * @author xuyf
+ * @date 2020/7/16
  */
 public interface IEnum<T> {
 

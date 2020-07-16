@@ -21,7 +21,7 @@ public class TaskEnum {
      */
     @Getter
     @AllArgsConstructor
-    public enum status implements IEnum<String> {
+    public enum STATUS implements IEnum<String> {
         DELETED("-1", "已删除"),
         STOP("0", "已停止"),
         RUNNINR("1", "运行中");
@@ -37,10 +37,10 @@ public class TaskEnum {
      */
     @Getter
     @AllArgsConstructor
-    public enum type implements IEnum<String> {
+    public enum TYPE implements IEnum<String> {
         PLUGIN("1", "插件任务"),
         QQ_MSG("2", "qq定时消息"),
-        OTHER("3", "其他任务");
+        PUBLIC("3", "公有任务");
         private final String code;
         private final String text;
     }
