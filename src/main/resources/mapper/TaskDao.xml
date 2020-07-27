@@ -16,13 +16,18 @@
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <select id="selectByType" parameterType="java.lang.String" resultType="com.huangyichun.taskManager.model.Task">
+    <select id="selectByJobStatus" parameterType="java.lang.String" resultType="com.huangyichun.taskManager.model.Task">
         select * from task
         <where>
-            <if test="#{type} != null and #{type} != ''">
-                job_group=#{type}
+            <if test="#{job_status} != null and #{job_status} != ''">
+                and job_status=#{job_status}
             </if>
         </where>
+    </select>
+    <select id="queryByCron" resultType="com.huangyichun.taskManager.model.Task" parameterType="java.lang.String">
+        select *
+        from task
+        where create_user = 'xugg001'
     </select>
 
 </mapper>

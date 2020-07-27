@@ -13,15 +13,18 @@ import java.util.List;
  * @author xugg001
  * @since 2020-06-30 10:34:01
  */
-@Repository
+@Repository("taskDao")
 public interface TaskDao extends BaseDao<Task> {
     /**
      * 按任务类型查询
      *
-     * @param type 任务类型码
+     * @param job_status 任务状态码
      * @return 该类型任务对象的列表
      * @author: xuyf
      * @Date: 2020/7/5
      */
-    List<Task> selectByType(@Param("type") String type);
+    List<Task> selectByJobStatus(@Param("job_status") String job_status);
+
+    List<Task> queryByCron(@Param("cronExpression") String cronExpression);
+
 }

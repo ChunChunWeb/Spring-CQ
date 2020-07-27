@@ -30,4 +30,10 @@ bilibili:
   png-save-path: C:/tempPNG/
   chrome-driver-path: C:/modules/chrome/chromedriver_win83.exe
 
+mybatis:
+  #  mapper文件路径
+  mapper-locations: classpath*:mapper/*Dao.xml
 
+  configuration:
+    #    开启驼峰命名，数据库下划线分割的单词在model转换为驼峰命名
+    map-underscore-to-camel-case: true
