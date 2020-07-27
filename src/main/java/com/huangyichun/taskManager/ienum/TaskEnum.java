@@ -24,7 +24,7 @@ public class TaskEnum {
     public enum STATUS implements IEnum<String> {
         DELETED("-1", "已删除"),
         STOP("0", "已停止"),
-        RUNNINR("1", "运行中");
+        RUNNING("1", "运行中");
         String code;
         String text;
     }

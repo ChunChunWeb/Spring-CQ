@@ -1,10 +1,16 @@
 package com.huangyichun.taskManager.service.impl;
 
+import com.huangyichun.core.util.BeanTool;
 import com.huangyichun.taskManager.ienum.TaskEnum;
 import com.huangyichun.taskManager.model.Task;
+import org.quartz.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
+
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.TriggerBuilder.newTrigger;
 
 /**
  * 任务调度控制
@@ -15,7 +21,6 @@ import java.util.List;
  */
 @Component
 public class QuartzUtil {
-
     /**
      * 获取一类任务的列表
      *
@@ -75,6 +80,33 @@ public class QuartzUtil {
      */
     public void stopTasks(List<Task> tasks) {
 
+    }
+
+    /**
+     * 执行任务
+     *
+     * @Param task 任务Model
+     * @Param scheduler 任务调度器
+     * @Return java.util.Date   调度时间
+     * @Author: xuyf
+     * @Date: 2020/7/27
+     */
+    public Date runJob(Task task, Scheduler scheduler) throws SchedulerException {
+        System.out.println(task);
+        Job job = (Job) BeanTool.getBean(task.getBeanClass());
+        JobDetail jobDetail = newJob(job.getClass())
+                .withIdentity(task.getId(), task.getJobGroup())
+                .build();
+        Trigger trigger = newTrigger()
+                .withIdentity(task.getId(), task.getJobGroup())
+                .withSchedule(
+                        CronScheduleBuilder.cronSchedule(task.getCronExpression())
+                ).forJob(jobDetail)
+                .build();
+        if (!scheduler.isStarted()) {
+            scheduler.start();
+        }
+        return scheduler.scheduleJob(jobDetail, trigger);
     }
 
 }
