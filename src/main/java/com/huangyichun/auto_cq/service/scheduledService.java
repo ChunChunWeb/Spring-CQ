@@ -51,6 +51,7 @@ public class scheduledService {
         for (Map.Entry<Long, List<String>> next : weatherSubscribes.entrySet()) {
             Long user_id = next.getKey();
             for (String s : next.getValue()) {
+                // 需要间隔3s 新要求
                 mainBot.sendPrivateMsg(user_id, getReply(s), false);
             }
         }
