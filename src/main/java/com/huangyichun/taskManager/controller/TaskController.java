@@ -106,10 +106,11 @@ public class TaskController {
             System.out.println("任务名：" + name);
             System.out.println("根据任务名获取类：" + applicationContext.getBean(name));
         }
-        return applicationContext.getBeanNamesForAnnotation(MyTask.class);
+        return BeanTool.getAnnotationClass(MyTask.class);
     }
 
-    @GetMapping("test")
+    //    @GetMapping("test")
+    @RequestMapping
     public void test() throws SchedulerException {
         System.out.println("test========" + applicationContext.getBean("taskDao"));
         quartzUtil.runJob(taskDao.queryByCron("").get(0), jobschduler);

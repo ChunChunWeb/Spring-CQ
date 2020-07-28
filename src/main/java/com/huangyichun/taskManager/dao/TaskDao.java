@@ -16,15 +16,25 @@ import java.util.List;
 @Repository("taskDao")
 public interface TaskDao extends BaseDao<Task> {
     /**
-     * 按任务类型查询
+     * 按任务状态查询
      *
      * @param job_status 任务状态码
-     * @return 该类型任务对象的列表
+     * @return 该状态任务对象的列表
      * @author: xuyf
      * @Date: 2020/7/5
      */
     List<Task> selectByJobStatus(@Param("job_status") String job_status);
 
     List<Task> queryByCron(@Param("cronExpression") String cronExpression);
+
+    /**
+     * 根据创建者查询任务
+     *
+     * @Param creater 任务创建人
+     * @Return java.util.List<com.huangyichun.taskManager.model.Task>
+     * @Author: xuyf
+     * @Date: 2020/7/27
+     */
+    List<Task> selectByCreater(@Param("creater") String creater);
 
 }

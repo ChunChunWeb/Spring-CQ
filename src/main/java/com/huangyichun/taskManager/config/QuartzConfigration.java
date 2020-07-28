@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -81,6 +82,11 @@ public class QuartzConfigration {
     @Bean("jobScheduler")
     public Scheduler jobScheduler() throws SchedulerException {
         return StdSchedulerFactory.getDefaultScheduler();
+    }
+
+    @Scheduled(cron = "0/3 * * * * ?")
+    public void scanJob() {
+        System.out.println("配置类定时扫描。。。" + taskDao.selectByCreater("xugg001"));
     }
 }
 

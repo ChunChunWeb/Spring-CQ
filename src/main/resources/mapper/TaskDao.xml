@@ -15,7 +15,7 @@
         <result property="updateUser" column="update_user" jdbcType="VARCHAR"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
-
+    <!--根据任务运行状态查询-->
     <select id="selectByJobStatus" parameterType="java.lang.String" resultType="com.huangyichun.taskManager.model.Task">
         select * from task
         <where>
@@ -24,10 +24,15 @@
             </if>
         </where>
     </select>
-    <select id="queryByCron" resultType="com.huangyichun.taskManager.model.Task" parameterType="java.lang.String">
-        select *
-        from task
-        where create_user = 'xugg001'
+    <!--根据创建者查询任务-->
+    <select id="selectByCreater" resultType="com.huangyichun.taskManager.model.Task">
+        select * from task
+        <where>
+            <if test="creater!=null and creater!=''">
+                create_user=#{creater}
+            </if>
+        </where>
     </select>
+
 
 </mapper>
